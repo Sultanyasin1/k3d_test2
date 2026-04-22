@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: pds-container
-        image: sultanss/pdsdemo1
+        image: sultanss/pdsdemotag1
         ports: 
           - containerPort: 3001
