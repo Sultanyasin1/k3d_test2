@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: pdsdemo-v1
+  namespace: pdsplayground
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: demo1
+  template:
+    metadata:
+      labels:
+        app: demo1
+    spec:
+      containers:
+      - name: pds-container
+        image: sultanss/pdsdemo1
+        ports: 
+          - containerPort: 3001
