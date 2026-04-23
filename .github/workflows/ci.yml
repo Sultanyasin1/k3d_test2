@@ -36,7 +36,7 @@ jobs:
 
       # 1. Test the code before building the app
       - name: Run tests 32
-        run: npm test || echo "No tests found, skipping..."
+        run: npm test || echo "No tests found, skipping...."
 
       - name: Build Next.js 35
         run: npm run build
