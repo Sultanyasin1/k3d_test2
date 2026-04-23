@@ -7,7 +7,7 @@ on:
 
 env:
   DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-  IMAGE_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}/pdsmemotag1
+  IMAGE_NAME: ${{ secrets.DOCKER_HUB_USERNAME }}/pdsdemotag1
 
 jobs:
   build-and-push:
