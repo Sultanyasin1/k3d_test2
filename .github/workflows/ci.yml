@@ -39,7 +39,7 @@ jobs:
         run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       # 2. Build the Docker image locally FIRST (No login required yet)
-      - name: Build Docker image 42
+      - name: Build Docker image 42 (test the build process before pushing to Docker Hub)
         run: |
           docker build -t $IMAGE_NAME:$SHORT_SHA .
           docker tag $IMAGE_NAME:$SHORT_SHA $IMAGE_NAME:latest
