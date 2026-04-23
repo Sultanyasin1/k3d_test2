@@ -13,6 +13,12 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+      - name: test dockerhub username if exists
+        run: |
+          if [ -z "${{ secrets.DOCKER_HUB_USERNAME }}" ]; then
+              echo "DOCKER_HUB_USERNAME is not set. Please set it in the repository secrets."
+              exit 1
+          fi
       - name: Checkout code 16
         uses: actions/checkout@v4
 
