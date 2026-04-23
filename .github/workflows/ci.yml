@@ -79,10 +79,20 @@ jobs:
       - name: Update GitOps repo 73
         run: |
           git clone https://${{ secrets.GITOPS_REPO_PAT }}@github.com/${{ secrets.GITOPS_REPO_PATH }}.git gitops
+
+          # Kopiera hela manifesten från frontend/ till GitOps-repot
+          # så att ändringar i replicas, ports, labels osv. också följer med.
+          cp deployment.yml gitops/manifests/deployment.yml
+          cp service.yml    gitops/manifests/service.yml
+
+          # Patcha image-taggen till den SHA vi precis pushade.
           cd gitops/manifests
-          sed -i "s|image:.*pdsdemotag1:.*|image: $IMAGE_NAME:$SHORT_SHA|g" deployment.yml
+          sed -i "s|image:.*pdsdemotag1.*|image: $IMAGE_NAME:$SHORT_SHA|g" deployment.yml
+
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git add deployment.yml
-          git commit -m "Update image tag to $SHORT_SHA" || echo "No changes to commit"
+          git add deployment.yml service.yml
+          git commit -m "Sync manifests + image tag $SHORT_SHA" || echo "No changes to commit"
           git push origin main
+
+
