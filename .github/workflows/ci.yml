@@ -80,9 +80,9 @@ jobs:
         run: |
           git clone https://${{ secrets.GITOPS_REPO_PAT }}@github.com/${{ secrets.GITOPS_REPO_PATH }}.git gitops
           cd gitops/manifests
-          sed -i "s|image:.*pdsdemotag1:.*|image: $IMAGE_NAME:$SHORT_SHA|g" deployment.yaml
+          sed -i "s|image:.*pdsdemotag1:.*|image: $IMAGE_NAME:$SHORT_SHA|g" deployment.yml
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git add deployment.yaml
+          git add deployment.yml
           git commit -m "Update image tag to $SHORT_SHA" || echo "No changes to commit"
           git push origin master
