@@ -67,7 +67,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN_GITOPS }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       # 6. Push the verified image.
       - name: Push Docker image 67
